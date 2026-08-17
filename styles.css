@@ -7,6 +7,8 @@
   --green: #24864a;
   --green-text: #1d6b3a;
   --green-light: #68c878;
+  --focus-dark: #102a43;
+  --focus-light: #ffffff;
   --text: #102a43;
   --text-muted: #405c70;
   --rule: rgb(16 42 67 / 16%);
@@ -44,8 +46,12 @@ a {
 }
 
 a:focus-visible {
-  outline: 3px solid var(--green-light);
+  outline: 3px solid var(--focus-dark);
   outline-offset: 4px;
+}
+
+.contact a:focus-visible {
+  outline-color: var(--focus-light);
 }
 
 .skip-link {

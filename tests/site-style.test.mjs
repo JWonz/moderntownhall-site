@@ -54,6 +54,30 @@ test('includes keyboard and reduced-motion accessibility states', async () => {
   assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)/i);
 });
 
+test('uses contrasting focus indicators on light and dark surfaces', async () => {
+  const css = await read('styles.css');
+  const ivory = colorToken(css, 'ivory');
+  const blue = colorToken(css, 'blue');
+  const darkFocus = colorToken(css, 'focus-dark');
+  const lightFocus = colorToken(css, 'focus-light');
+  const defaultFocusRule = css.match(/a:focus-visible\s*\{([\s\S]*?)\}/);
+  const darkSurfaceFocusRule = css.match(/\.contact a:focus-visible\s*\{([\s\S]*?)\}/);
+
+  assert.ok(defaultFocusRule, 'default link focus rule must remain defined');
+  assert.match(defaultFocusRule[1], /outline:\s*(?:[3-9]|\d{2,})px\s+solid\s+var\(--focus-dark\)/);
+  assert.match(defaultFocusRule[1], /outline-offset:\s*[1-9]\d*px/);
+  assert.ok(darkSurfaceFocusRule, 'dark contact surface must override the focus color');
+  assert.match(darkSurfaceFocusRule[1], /outline-color:\s*var\(--focus-light\)/);
+  assert.ok(
+    contrastRatio(darkFocus, ivory) >= 3,
+    `${darkFocus} must provide at least 3:1 focus contrast against ${ivory}`,
+  );
+  assert.ok(
+    contrastRatio(lightFocus, blue) >= 3,
+    `${lightFocus} must provide at least 3:1 focus contrast against ${blue}`,
+  );
+});
+
 test('uses a passing contrast token for small ivory-background labels', async () => {
   const css = await read('styles.css');
   const ivory = colorToken(css, 'ivory');
