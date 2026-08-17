@@ -5,6 +5,7 @@
   --navy-dark: #0b2033;
   --blue: #075a9c;
   --green: #24864a;
+  --green-text: #1d6b3a;
   --green-light: #68c878;
   --text: #102a43;
   --text-muted: #405c70;
@@ -128,7 +129,7 @@ a:focus-visible {
 .eyebrow,
 .section-label {
   margin: 0 0 16px;
-  color: var(--green);
+  color: var(--green-text);
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.13em;
