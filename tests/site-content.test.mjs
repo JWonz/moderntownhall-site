@@ -39,7 +39,9 @@ test('publishes the approved business identity', async () => {
   const html = await read('index.html');
   assert.match(html, /Modern Town Hall/);
   assert.match(html, /ModernTownhall LLC/);
-  assert.match(html, /Columbus, Ohio/);
+  assert.match(html, /Hilliard, Ohio/);
+  assert.match(html, /Serving the Greater Columbus area/);
+  assert.doesNotMatch(html, /(?:in|based in|Built in) Columbus,? Ohio?/i);
   assert.match(html, /contact@moderntownhall\.com/);
   assert.match(html, /A stronger voice in the policies that shape your life\./);
   assert.match(html, /pre-launch/i);
@@ -99,7 +101,7 @@ test('publishes canonical, sharing, and Organization metadata', async () => {
   assert.equal(organization.legalName, 'ModernTownhall LLC');
   assert.equal(organization.url, 'https://moderntownhall.com/');
   assert.equal(organization.email, 'mailto:contact@moderntownhall.com');
-  assert.equal(organization.address.addressLocality, 'Columbus');
+  assert.equal(organization.address.addressLocality, 'Hilliard');
   assert.equal(organization.address.addressRegion, 'OH');
   assert.equal(organization.address.addressCountry, 'US');
   assert.equal('streetAddress' in organization.address, false);
