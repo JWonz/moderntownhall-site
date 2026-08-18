@@ -440,17 +440,29 @@ h1 {
 
   .hero {
     grid-template-columns: 1fr;
-    gap: 26px;
-    padding: 48px 24px 52px;
+    gap: 16px;
+    padding: 24px 24px 48px;
   }
 
   .hero-art {
     order: -1;
-    justify-items: start;
+    justify-items: center;
   }
 
   .hero-art img {
-    width: 170px;
+    width: 250px;
+    max-width: none;
+    margin: -25px 0 -14px;
+    transform: translateX(-29px);
+  }
+
+  .eyebrow-divider {
+    display: none;
+  }
+
+  .eyebrow-launch {
+    display: block;
+    margin-top: 2px;
   }
 
   .trust-strip,
